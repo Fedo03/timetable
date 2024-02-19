@@ -9,7 +9,7 @@ import {
     Dimensions
 } from 'react-native'
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Component } from "react";
 
 import DocumentPicker, {types}  from "react-native-document-picker";
 
@@ -19,8 +19,9 @@ import Pdf from 'react-native-pdf'
 
 const Home = () => {
 
-    const [file,setFile] = useState()
-    
+    const [file,setFile] = useState({pdfUri : null})
+
+
 
   const doc = useCallback( async () => {
     try {
@@ -29,26 +30,37 @@ const Home = () => {
             type : [types.pdf],
             allowMultiSelection : false,
         })
-        setFile(res)
-        console.log(res)
+        setFile({pdfUri : res[0].uri})
+        console.log(file.pdfUri)
 
     } catch (err) {
         console.warn(err)
     }
-  }, []) 
+  }, []) ;
 
-    const source = {url : file,
-                    catch : true}
-
+    //const source = {url : file,
+    //                catch : true}
+//render() {
+    const pdfUri = file.pdfUri
+    console.log(pdfUri)
 
     return (
         <SafeAreaView>
 
-<View>
-     <Pdf source={source} 
-          style={sty.pdf}/>
-
-    
+<View style={sty.con}>
+    { pdfUri && (
+        <View>
+     <Pdf source={{uri: pdfUri}} 
+          style={sty.pdf}
+          onLoadComplete={(numberOfPages, filePath) =>{
+             console.log(numberOfPages)
+          }}/>
+          
+          <Text>pdf</Text>
+          </View>
+        )
+       
+        }
 </View>
 
                  
@@ -65,6 +77,7 @@ const Home = () => {
 
     )
 }
+//}
 
 
 const sty = StyleSheet.create({
@@ -72,6 +85,12 @@ const sty = StyleSheet.create({
         flex : 1,
         width : Dimensions.get('window').width,
         height : Dimensions.get('window').height,
+    },
+    con : {
+    flex : 1,
+    justifyContent : "flex-start",
+    alignItems : "center",
+    
     }
 })
 
