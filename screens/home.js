@@ -11,6 +11,8 @@ import {
 
 import { useState, useEffect, useCallback, Component } from "react";
 
+import RNFetchBlob from "rn-fetch-blob";
+
 import DocumentPicker, {types}  from "react-native-document-picker";
 
 import Pdf from 'react-native-pdf'
@@ -20,7 +22,8 @@ import Pdf from 'react-native-pdf'
 const Home = () => {
 
     const [file,setFile] = useState({pdfUri : null})
-
+    const [uris,setUris] = useState()
+ 
 
 
   const doc = useCallback( async () => {
@@ -30,19 +33,22 @@ const Home = () => {
             type : [types.pdf],
             allowMultiSelection : false,
         })
-        setFile({pdfUri : res[0].uri})
-        console.log(file.pdfUri)
+
+        const pdfP = res[0].uri
+        setUris(pdfP)
+        const cont = await RNFetchBlob.fs.readFile(pdfP,'base64')
+        setFile({pdfUri : cont})
+       // console.log(cont)
 
     } catch (err) {
         console.warn(err)
     }
   }, []) ;
 
-    //const source = {url : file,
-    //                catch : true}
-//render() {
-    const pdfUri = file.pdfUri
-    console.log(pdfUri)
+   
+    const pdfUri =  file.pdfUri
+  //  console.log(pdfUri)
+    console.log(uris)
 
     return (
         <SafeAreaView>
@@ -50,18 +56,28 @@ const Home = () => {
 <View style={sty.con}>
     { pdfUri && (
         <View>
-     <Pdf source={{uri: pdfUri}} 
+     <Pdf source={{uri: 'data:application/pdf;base64,' + pdfUri}} 
           style={sty.pdf}
-          onLoadComplete={(numberOfPages, filePath) =>{
-             console.log(numberOfPages)
-          }}/>
+          />
           
-          <Text>pdf</Text>
+          
           </View>
+         
         )
        
         }
 </View>
+
+<View>
+     <Pdf source={{uri: "content://com.android.providers.downloads.documents/document/8123" , cache : true}}
+          onLoadComplete={(numberOfPages,filepath) => {
+            console.log(numberOfPages)
+          }}
+          style={sty.pdf}
+          />
+          
+          
+          </View>
 
                  
 <View>
@@ -83,8 +99,10 @@ const Home = () => {
 const sty = StyleSheet.create({
     pdf : {
         flex : 1,
-        width : Dimensions.get('window').width,
-        height : Dimensions.get('window').height,
+        width : "100%",
+        height : "100%"
+      //  width : Dimensions.get('window').width,
+     //   height : Dimensions.get('window').height,
     },
     con : {
     flex : 1,
