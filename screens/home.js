@@ -25,13 +25,14 @@ import Button from "../comp/button";
 
 
 
-const Home = () => {
+const Home = ({navigation}) => {
 
     const [file,setFile] = useState({pdfUri : null})
     const [uris,setUris] = useState()
 
-    const { width, height } = Dimensions.get('window'); 
-    console.log(width)
+  function nav(){
+    navigation.navigate('canvas')
+  }
  
 
   useEffect(()=> {
@@ -127,7 +128,8 @@ const Home = () => {
     { pdfUri && (
         <View>
            <PdfV uri={pdfUri} 
-            styl={sty.pdf}/>
+            styl={sty.pdf}
+            onClick={nav}/>
           
           
           </View>
@@ -139,13 +141,13 @@ const Home = () => {
 
 
 
-        <View>
+        <View style={sty.con}>
 
           {
             !pdfUri && (
             <View>
               <Button onClick={doc}
-              vst={sty.con}
+              vst={sty.conT}
               tst={sty.txt} />
                </View>
               )
@@ -180,7 +182,18 @@ const sty = StyleSheet.create({
     
     }, 
     txt :{
-      color : "black"
+      color : "black",
+      justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightgrey'
+    },
+    conT : {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+       width: 90,
+       height: 30
+
     }
 })
 

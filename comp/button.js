@@ -11,6 +11,7 @@ import {
 
 const Button = ({onClick,vst,tst}) => {
     return (
+        <SafeAreaView>
         <View style={vst}>
      
 
@@ -21,6 +22,7 @@ const Button = ({onClick,vst,tst}) => {
 
             </TouchableOpacity>
 </View>
+</SafeAreaView>
     )
 }
 
