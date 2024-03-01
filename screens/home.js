@@ -8,7 +8,8 @@ import {
     StyleSheet,
     Dimensions,
     PermissionsAndroid,
-    Platform
+    Platform,
+    ScrollView
 } from 'react-native'
 
 import { useState, useEffect, useCallback, Component } from "react";
@@ -19,7 +20,8 @@ import DocumentPicker, {types}  from "react-native-document-picker";
 
 import { Dirs,FileSystem } from "react-native-file-access";
 
-import Pdf from 'react-native-pdf'
+import PdfV from "../comp/pdf";
+import Button from "../comp/button";
 
 
 
@@ -27,6 +29,9 @@ const Home = () => {
 
     const [file,setFile] = useState({pdfUri : null})
     const [uris,setUris] = useState()
+
+    const { width, height } = Dimensions.get('window'); 
+    console.log(width)
  
 
   useEffect(()=> {
@@ -85,8 +90,8 @@ const Home = () => {
         const date = new Date();
         const fileName = date.getTime()+ ".pdf"
         const filePath = Dirs.DocumentDir +  "/" + fileName
-         setUris(filePath)
-
+        
+        
         
  
          await FileSystem.writeFile(filePath, cont, 'base64');
@@ -96,8 +101,9 @@ const Home = () => {
          await FileSystem.cpExternal(filePath, fileName,'downloads');
          
          setFile({pdfUri : filePath})
-        
-        
+
+       
+       
         
 
     } catch (err) {
@@ -109,15 +115,19 @@ const Home = () => {
     const pdfUri =  file.pdfUri
        console.log(pdfUri)
 
+
+
+
     return (
         <SafeAreaView>
+          <ScrollView>
+
 
 <View style={sty.con}>
     { pdfUri && (
         <View>
-     <Pdf source={{uri: pdfUri}} 
-          style={sty.pdf}
-          />
+           <PdfV uri={pdfUri} 
+            styl={sty.pdf}/>
           
           
           </View>
@@ -129,47 +139,48 @@ const Home = () => {
 
 
 
-                 
+        <View>
+
+          {
+            !pdfUri && (
+            <View>
+              <Button onClick={doc}
+              vst={sty.con}
+              tst={sty.txt} />
+               </View>
+              )
+          }
+          </View>           
           
           
 
                  
-<View>
 
-            <TouchableOpacity  onPress={doc} >
-                <View>
-                    <Text>add timetable</Text>
-                </View>                                                                                                                                                                                                                                                                                                     
 
-            </TouchableOpacity>
-</View>
-<View style={sty.con}>
-     <Pdf source={{uri: '/data/user/0/com.timetable/files/1709305616336.pdf',catche :true}} 
-          style={sty.pdf}
-          />
-          
-          
-          </View>
+          </ScrollView>
         </SafeAreaView>
 
     )
 }
-//}
+
 
 
 const sty = StyleSheet.create({
     pdf : {
         flex : 1,
-        width : "100%",
-        height : "100%"
-      //  width : Dimensions.get('window').width,
-     //   height : Dimensions.get('window').height,
+        width : Dimensions.get('window').width,
+        height : Dimensions.get('window').height
+   
     },
     con : {
     flex : 1,
     justifyContent : "flex-start",
     alignItems : "center",
+    marginTop : 0
     
+    }, 
+    txt :{
+      color : "black"
     }
 })
 

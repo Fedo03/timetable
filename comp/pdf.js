@@ -1,0 +1,38 @@
+import React from 'react'
+
+import {
+    SafeAreaView,
+    View,
+    TouchableOpacity,
+    Text,
+    StyleSheet,
+} from 'react-native'
+
+import Pdf from 'react-native-pdf'
+
+const PdfV = (props) => {
+return (
+
+    <SafeAreaView>
+    <View>
+    <Pdf source={{uri: props.uri}} 
+     onLoadComplete={(numberOfPages, filePath) => {
+       console.log(`Number of pages: ${numberOfPages}`);
+     }}
+     onPageChanged={(page, numberOfPages) => {
+       console.log(`Current page: ${page}`);
+     }}
+     onError={(error) => {
+       console.error('Error loading PDF:', error);
+     }}
+         style={props.styl} />
+
+         </View>
+         </SafeAreaView>
+
+)
+
+}
+
+
+export default PdfV
