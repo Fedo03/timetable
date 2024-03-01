@@ -6,7 +6,9 @@ import {
     TouchableOpacity,
     Text,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    PermissionsAndroid,
+    Platform
 } from 'react-native'
 
 import { useState, useEffect, useCallback, Component } from "react";
@@ -14,6 +16,8 @@ import { useState, useEffect, useCallback, Component } from "react";
 import RNFetchBlob from "rn-fetch-blob";
 
 import DocumentPicker, {types}  from "react-native-document-picker";
+
+import { Dirs,FileSystem } from "react-native-file-access";
 
 import Pdf from 'react-native-pdf'
 
@@ -25,6 +29,47 @@ const Home = () => {
     const [uris,setUris] = useState()
  
 
+  useEffect(()=> {
+   perm()
+   })
+     
+
+    const perm = async () => {
+  try {
+
+      const gran = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
+        title: 'Access to files',
+        message: 'idk how to hack',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      })
+      const grant = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
+        title: 'Access to files',
+        message: 'idk how to hack',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      })
+      if (grant === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use the camera');
+      } else {
+        console.log('Camera permission denied');
+      }
+    
+    } catch (err) {
+      console.warn(err);
+    }
+
+    }
+
+
+
+    
+
+
+
+
 
   const doc = useCallback( async () => {
     try {
@@ -33,12 +78,27 @@ const Home = () => {
             type : [types.pdf],
             allowMultiSelection : false,
         })
-
         const pdfP = res[0].uri
-        setUris(pdfP)
         const cont = await RNFetchBlob.fs.readFile(pdfP,'base64')
-        setFile({pdfUri : cont})
-       // console.log(cont)
+           
+
+        const date = new Date();
+        const fileName = date.getTime()+ ".pdf"
+        const filePath = Dirs.DocumentDir +  "/" + fileName
+         setUris(filePath)
+
+        
+ 
+         await FileSystem.writeFile(filePath, cont, 'base64');
+  
+         if (!FileSystem.exists(filePath)) return;
+  
+         await FileSystem.cpExternal(filePath, fileName,'downloads');
+         
+         setFile({pdfUri : filePath})
+        
+        
+        
 
     } catch (err) {
         console.warn(err)
@@ -47,8 +107,7 @@ const Home = () => {
 
    
     const pdfUri =  file.pdfUri
-  //  console.log(pdfUri)
-    console.log(uris)
+       console.log(pdfUri)
 
     return (
         <SafeAreaView>
@@ -56,7 +115,7 @@ const Home = () => {
 <View style={sty.con}>
     { pdfUri && (
         <View>
-     <Pdf source={{uri: 'data:application/pdf;base64,' + pdfUri}} 
+     <Pdf source={{uri: pdfUri}} 
           style={sty.pdf}
           />
           
@@ -68,16 +127,11 @@ const Home = () => {
         }
 </View>
 
-<View>
-     <Pdf source={{uri: "content://com.android.providers.downloads.documents/document/8123" , cache : true}}
-          onLoadComplete={(numberOfPages,filepath) => {
-            console.log(numberOfPages)
-          }}
-          style={sty.pdf}
-          />
+
+
+                 
           
           
-          </View>
 
                  
 <View>
@@ -89,6 +143,13 @@ const Home = () => {
 
             </TouchableOpacity>
 </View>
+<View style={sty.con}>
+     <Pdf source={{uri: '/data/user/0/com.timetable/files/1709305616336.pdf',catche :true}} 
+          style={sty.pdf}
+          />
+          
+          
+          </View>
         </SafeAreaView>
 
     )
