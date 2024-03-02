@@ -1,12 +1,21 @@
 import React from 'react'
 
 import {
-    SafeAreaView
+    SafeAreaView,
+    View
 } from 'react-native'
+
+import Button from '../comp/button'
+
+
 
 const CanvasHome = () => {
     return (
         <SafeAreaView>
+
+            <View>
+                <Button  />
+            </View>
 
         </SafeAreaView>
     )

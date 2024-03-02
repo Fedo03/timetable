@@ -18,6 +18,8 @@ import RNFetchBlob from "rn-fetch-blob";
 
 import DocumentPicker, {types}  from "react-native-document-picker";
 
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
 import { Dirs,FileSystem } from "react-native-file-access";
 
 import PdfV from "../comp/pdf";
@@ -33,11 +35,33 @@ const Home = ({navigation}) => {
   function nav(){
     navigation.navigate('canvas')
   }
- 
+    
+
+  const set = async (value) => {
+    try {
+      await AsyncStorage.setItem("path",value)
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const get = async () => {
+    var value = await AsyncStorage.getItem("path")
+
+    if(value) {
+      setFile({pdfUri : value})
+    }
+
+  }
+
+  useEffect(()=>{
+    get()
+  },[])
 
   useEffect(()=> {
    perm()
-   })
+   },[])
      
 
     const perm = async () => {
@@ -102,6 +126,7 @@ const Home = ({navigation}) => {
          await FileSystem.cpExternal(filePath, fileName,'downloads');
          
          setFile({pdfUri : filePath})
+         set(filePath)
 
        
        
@@ -122,10 +147,16 @@ const Home = ({navigation}) => {
     return (
         <SafeAreaView>
           <ScrollView>
+        
 
+    <View>
+      <Button onClick={doc} txt="timetable"/>
+    </View>
 
 <View style={sty.con}>
-    { pdfUri && (
+    { 
+    pdfUri && 
+    (
         <View>
            <PdfV uri={pdfUri} 
             styl={sty.pdf}
@@ -144,11 +175,13 @@ const Home = ({navigation}) => {
         <View style={sty.con}>
 
           {
-            !pdfUri && (
+            !pdfUri && 
+            (
             <View>
               <Button onClick={doc}
               vst={sty.conT}
-              tst={sty.txt} />
+              tst={sty.txt} 
+              txt="add timetable"/>
                </View>
               )
           }

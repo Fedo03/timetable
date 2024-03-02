@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 
-const Button = ({onClick,vst,tst}) => {
+const Button = ({onClick,vst,tst,txt}) => {
     return (
         <SafeAreaView>
         <View style={vst}>
@@ -17,7 +17,7 @@ const Button = ({onClick,vst,tst}) => {
 
             <TouchableOpacity  onPress={onClick} >
                 <View>
-                    <Text style={tst}>add timetable</Text>
+                    <Text style={tst}>{txt}</Text>
                 </View>                                                                                                                                                                                                                                                                                                     
 
             </TouchableOpacity>
