@@ -82,9 +82,9 @@ const Home = ({navigation}) => {
         buttonPositive: 'OK',
       })
       if (grant === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the camera');
+        console.log('You can use the storage');
       } else {
-        console.log('Camera permission denied');
+        console.log('storage permission denied');
       }
     
     } catch (err) {
