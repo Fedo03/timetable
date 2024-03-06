@@ -15,7 +15,7 @@ const CanvasHome = () => {
     var z = url + token
     const urls = 'https://ulwazi.wits.ac.za/api/v1/'
 
-    const headers = 
+    const headers = {
         'Authorization': 'Bearer ' + token,
     }
 
@@ -30,15 +30,28 @@ const CanvasHome = () => {
             console.log(data + " 4")
         }) */
 
-        fetch(urls, {headers}).then((res) => {
+   /*     fetch(urls, {headers}).then((res) => {
             console.log("5")
             return res.json()
         }).then((data) => {
             console.log("6")
             console.log(data + " 7")
+        }) */
+
+
+        fetch('https://ulwazi.wits.ac.za/api/v1/courses', {
+            method : "GET",
+            headers : {
+                'Authorization': " Bearer 19417~py5pVAx1FxwpeNhSq8tnxtHCNnlSEZrTjjklxjIkGTCNPW7DnsG2rYycUBrpACk4" ,
+            }
+        }
+        ).then((res)=> {
+            return res.json()
+        }).then((data) => {
+            console.log(data)
         })
     })
-
+ 
     return (
         <SafeAreaView>
 
@@ -51,4 +64,4 @@ const CanvasHome = () => {
 }
 
 export default CanvasHome
-//https://canvas.instructure.com/api/v1/courses?access_token=19417~s7VPZVqEGkYqEtVbTJtxAA5fy77fsZeoPPrOZe7lJLs7gRQ4wdxEOTz25bFceZic
+
