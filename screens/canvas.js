@@ -42,7 +42,7 @@ const CanvasHome = () => {
         fetch('https://ulwazi.wits.ac.za/api/v1/courses', {
             method : "GET",
             headers : {
-                'Authorization': " Bearer 19417~py5pVAx1FxwpeNhSq8tnxtHCNnlSEZrTjjklxjIkGTCNPW7DnsG2rYycUBrpACk4" ,
+                'Authorization': " Bearer " ,
             }
         }
         ).then((res)=> {
