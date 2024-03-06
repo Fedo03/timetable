@@ -21,22 +21,8 @@ const CanvasHome = () => {
 
     useEffect(()=> {
 
-        console.log("1")
-     /*   fetch(z).then((res) => {
-            console.log("2")
-            return res.json()
-        }).then((data) => {
-            console.log("3")
-            console.log(data + " 4")
-        }) */
-
-   /*     fetch(urls, {headers}).then((res) => {
-            console.log("5")
-            return res.json()
-        }).then((data) => {
-            console.log("6")
-            console.log(data + " 7")
-        }) */
+        
+    
 
 
         fetch('https://ulwazi.wits.ac.za/api/v1/courses', {
