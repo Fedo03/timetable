@@ -11,11 +11,11 @@ import {
 } from 'react-native'
 import { Screen } from 'react-native-screens'
 
-const Card = (props) {
+const Card = (props) => {
       
     const [card, setCard] = useState(false)
 
-    if(props.card == "card") {
+    if(props.cards == "card") {
         setCard(true)
     }
         
@@ -23,12 +23,12 @@ const Card = (props) {
 
     return (
         <SafeAreaView>
-     <TouchableOpacity onPress={props.onClick}>
-        <View style{stl.con}>
+    {/*<TouchableOpacity onPress={props.onClick}>
+        <View style={stl.con}>
         {
             card && (
                 <View>
-                <Text style{stl.txt}>
+                <Text style={stl.txt}>
                 {props.name}
                 </Text>
 
@@ -38,14 +38,15 @@ const Card = (props) {
         }
         </View> 
         </TouchableOpacity>
+    */}
 
 
     <TouchableOpacity onPress={props.onClick}>
-        <View style{stl.hor}>
+        <View style={stl.hor}>
         {
             !card && (
                 <View>
-                <Text style{stl.txt}>
+                <Text style={stl.txt}>
                 {props.name}
                 </Text>
                 </View>
@@ -65,11 +66,11 @@ const stl = StyleSheet.create({
     },
     hor : {
         width : Dimensions.get("screen").width/2,
-        height : "50"
+        height : 50
     },
     txt : {
         color : "black",
-        background : "rgb(0,0,50)"
+        backgroundColor : "rgb(0,250,50)"
     
     }
 })
