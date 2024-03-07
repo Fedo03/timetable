@@ -9,7 +9,9 @@ import Button from '../comp/button'
 
 
 
+
 const CanvasHome = () => {
+    
     var url = "https://canvas.instructure.com/api/v1/courses?access_token="
     var token = ""
     var z = url + token
