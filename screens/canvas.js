@@ -7,14 +7,16 @@ import {
 } from 'react-native'
 
 import Button from '../comp/button'
+import Card from '../comp/course'
 
 import Icons from '../comp/icons'
+import Card from '../comp/course'
 
 
-const CanvasHome = () => {
+const CanvasHome = ({navigatation}) => {
     
     var url = "https://canvas.instructure.com/api/v1/courses?access_token="
-    const [token,setToken] = useState("19417~kRwGTdVynqmV3uRanoQqwUQuymn6B9WzTHBNIIUKlVlklMUyzjQLs8p41L1dLggN")
+    const [token,setToken] = useState("")
     var calen ;
    
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
@@ -64,12 +66,12 @@ const CanvasHome = () => {
         <SafeAreaView>
 
             <View>
-                <Button txt={<Icons name={"facebook"} color={"#0000a5"} size={50}/>} />
+                <Button txt={<Icons name={"bars"} color={"#0000a5"} size={30}/>} />
                  
             </View>
             <View>
-               {cou.map((item)=> {
-                return <Text style={{color: "black"}}>{item}</Text>
+               { cou.map((item)=> {
+                return <Card name={item} onClick={nav}/>
                })
                }
             </View>
