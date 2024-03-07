@@ -21,9 +21,7 @@ const CanvasHome = ({navigatation}) => {
    
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
     const [cou, setCou] = useState([])
-    const headers = {
-        'Authorization': 'Bearer ' + token,
-    }
+    
 
     useEffect(()=> {
 
@@ -42,13 +40,17 @@ const CanvasHome = ({navigatation}) => {
         }).then((data) => {
           data.forEach(i => {
             console.log(i.name)
-            setCou(...cou , i.name)
+            setCou([...cou , i.name])
           });
            
              
            
         }) 
     })
+
+    function nav(){
+        console.log("hello world")
+    }
 
  console.log(cou)
     function refresh() {
