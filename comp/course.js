@@ -13,13 +13,13 @@ import { Screen } from 'react-native-screens'
 
 const Card = (props) => {
       
-    const [card, setCard] = useState(false)
+    
 
 
     function cards() {
 
     
-    if(props.cards == "card") {
+    if(props.card == "cards") {
         return (
 
             <TouchableOpacity onPress={props.onClick}>
@@ -31,6 +31,7 @@ const Card = (props) => {
 
                
         </View> 
+       
         </TouchableOpacity>
 
         )
@@ -52,8 +53,11 @@ const Card = (props) => {
     return (
         <SafeAreaView>
             <View>{
-                cards
+                cards()
             }</View>
+               
+
+
     
         </SafeAreaView>
 
@@ -63,15 +67,21 @@ const Card = (props) => {
 const stl = StyleSheet.create({
     con : {
         width : Dimensions.get("screen").width/2,
-        height : Dimensions.get("screen").height/2
+        height : Dimensions.get("screen").height/3,
+        backgroundColor : "rgb(73, 216, 230)",
+        marginTop : 10
+
     },
     hor : {
-        width : Dimensions.get("screen").width/2,
-        height : 50
+        width : Dimensions.get("screen").width - 20,
+        height : 50,
+        backgroundColor : "rgb(73, 216, 230)",
+        marginTop : 10
     },
     txt : {
         color : "black",
-        backgroundColor : "rgb(73, 216, 230)"
+        marginLeft : 20
+        
     
     }
 })

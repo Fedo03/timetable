@@ -21,7 +21,7 @@ const CanvasHome = ({navigation}) => {
     var calen ;
    
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
-    const [cou, setCou] = useState([])
+    const [cou, setCou] = useState([{}])
     
 
     useEffect(()=> {
@@ -42,8 +42,12 @@ const CanvasHome = ({navigation}) => {
             setCou([])
           data.forEach(i => {
             if(i.name){
+                var newV = {
+                    key: i.id,
+                    name : i.name
+                }
             console.log(i.name)
-            setCou(pre => [...pre , i.name])
+            setCou(pre => [...pre , newV])
             }
           });
         
@@ -53,9 +57,9 @@ const CanvasHome = ({navigation}) => {
         }) 
     },[])
 
-    function nav(){
+    function nav(item){
         console.log("hello world")
-        navigation.navigate('course')
+        navigation.navigate('course', {data : item})
     }
 console.log("hello world")
  console.log(cou)
@@ -65,7 +69,9 @@ console.log("hello world")
         fetch(urls + "/login/oauth2/token", {
             method : "post",
             headers :{
-
+                'grant_type' : refresh_token,
+                
+                'Authorization': " Bearer "+ token ,
             }
         })
 
@@ -75,12 +81,12 @@ console.log("hello world")
         <SafeAreaView>
             <ScrollView>
             <View>
-                <Button txt={<Icons name={"bars"} color={"#0000a5"} size={30}/>} />
+                <Button txt={<Icons name={"bars"} color={"#0000a5"} size={30}/>} onClick={refresh}/>
                  
             </View>
             <View style={{paddingLeft : 10, paddingTop : 10}}>
                { cou.map((item)=> {
-                return <Card name={item} onClick={nav} cards={"cards"}/>
+                return <Card name={item.name} onClick={nav(item)} cards={"cards"}/>
                })
                }
             </View>
