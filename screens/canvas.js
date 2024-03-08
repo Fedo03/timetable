@@ -69,7 +69,7 @@ console.log("hello world")
         fetch(urls + "/login/oauth2/token", {
             method : "post",
             headers :{
-                'grant_type' : refresh_token,
+                'grant_type' : "refresh_token",
                 
                 'Authorization': " Bearer "+ token ,
             }
@@ -86,7 +86,7 @@ console.log("hello world")
             </View>
             <View style={{paddingLeft : 10, paddingTop : 10}}>
                { cou.map((item)=> {
-                return <Card name={item.name} onClick={()=> nav([item])} cards={"cards"}/>
+                return <Card name={item.name} onClick={()=> nav(item)} cards={"cards"}/>
                })
                }
             </View>

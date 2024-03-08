@@ -149,9 +149,7 @@ const Home = ({navigation}) => {
           <ScrollView>
         
 
-    <View>
-      <Button onClick={doc} txt="timetable"/>
-    </View>
+   
 
 <View style={sty.con}>
     { 

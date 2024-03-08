@@ -69,7 +69,8 @@ const stl = StyleSheet.create({
         width : Dimensions.get("screen").width/2,
         height : Dimensions.get("screen").height/3,
         backgroundColor : "rgb(73, 216, 230)",
-        marginTop : 10
+        marginTop : 10,
+        borderRadius : 10
 
     },
     hor : {
