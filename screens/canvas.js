@@ -86,7 +86,7 @@ console.log("hello world")
             </View>
             <View style={{paddingLeft : 10, paddingTop : 10}}>
                { cou.map((item)=> {
-                return <Card name={item.name} onClick={nav(item)} cards={"cards"}/>
+                return <Card name={item.name} onClick={nav} cards={"cards"}/>
                })
                }
             </View>

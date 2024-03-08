@@ -8,13 +8,13 @@ import {
 
 import Card from '../comp/course';
 
-const Course = ({navigatation}) => {
+const Course = ({navigation}) => {
     var route = useRoute()
-    var value = route.params?data
+   // var value = route.params.data ;
 
 
      function nav() {
-        navigatation.navigate('assign')
+        navigatation.navigate('assign', )
      }
 
 
@@ -22,7 +22,7 @@ const Course = ({navigatation}) => {
         <SafeAreaView>
             <View>
                 <Text>
-                    {value.name}
+                    {""}
                 </Text>
             </View>
 

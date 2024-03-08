@@ -27,7 +27,7 @@ const App = () => {
             <Stack.Screen
             name="course"
             component={Course} />
-            <Stack.Screen 
+           <Stack.Screen 
             name="assign"
             component={Assign} />
       </Stack.Navigator>
