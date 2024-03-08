@@ -59,7 +59,7 @@ const CanvasHome = ({navigation}) => {
 
     function nav(item){
         console.log("hello world")
-        navigation.navigate('course', [{name : item.name},{key :item.key }])
+        navigation.navigate('course', {name : item.name, key :item.key })
     }
 console.log("hello world")
  console.log(cou)

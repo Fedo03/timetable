@@ -3,36 +3,49 @@ import React from "react";
 import {
     View,
     SafeAreaView,
-    Text
+    Text,
+    StyleSheet
 } from 'react-native'
 
 import Card from '../comp/course';
 
-const Course = ({navigation}) => {
-    var route = useRoute()
-   var value = route.params?.data ;
-   console.log(value)
+const Course = ({navigation, route}) => {
+    
+   const {name,key} = route.params
+   console.log(name)
 
 
      function nav() {
-        navigation.navigate('assign', )
+        navigation.navigate('assign', {key : key, name : name} )
      }
 
 
     return (
         <SafeAreaView>
             <View>
-                <Text style={{color:"black"}}>
-                    {value}
+                <Text style={stl.head}>
+                    {name}
                 </Text>
             </View>
 
-            <View style={{marginLeft: 10}}>
+            <View style={stl.txt}>
             <Card name={"ASSIGNMENT"} onClick={nav} /> 
         </View>
 
         </SafeAreaView>
     )
 }
+
+const stl = StyleSheet.create({
+    txt : {
+        marginLeft: 5,
+    
+    },
+    head : {
+        marginLeft: 10,
+        fontSize : 25,
+        color:"black"
+    }
+})
 
 export default Course
