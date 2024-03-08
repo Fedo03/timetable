@@ -17,7 +17,7 @@ import Icons from '../comp/icons'
 const CanvasHome = ({navigation}) => {
     
     var url = "https://canvas.instructure.com/api/v1/courses?access_token="
-    const [token,setToken] = useState("")
+    const [token,setToken] = useState("19417~d1zieLtOtyOEYKaQpdkROpHd3R2Qi5avV9KpL5OCOtL6aN1NyygQAOW9FeundIdy")
     var calen ;
    
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
@@ -59,7 +59,7 @@ const CanvasHome = ({navigation}) => {
 
     function nav(item){
         console.log("hello world")
-        navigation.navigate('course', {data : item})
+        navigation.navigate('course', [{name : item.name},{key :item.key }])
     }
 console.log("hello world")
  console.log(cou)
@@ -86,7 +86,7 @@ console.log("hello world")
             </View>
             <View style={{paddingLeft : 10, paddingTop : 10}}>
                { cou.map((item)=> {
-                return <Card name={item.name} onClick={nav} cards={"cards"}/>
+                return <Card name={item.name} onClick={()=> nav([item])} cards={"cards"}/>
                })
                }
             </View>

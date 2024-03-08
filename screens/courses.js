@@ -10,23 +10,24 @@ import Card from '../comp/course';
 
 const Course = ({navigation}) => {
     var route = useRoute()
-   // var value = route.params.data ;
+   var value = route.params?.data ;
+   console.log(value)
 
 
      function nav() {
-        navigatation.navigate('assign', )
+        navigation.navigate('assign', )
      }
 
 
     return (
         <SafeAreaView>
             <View>
-                <Text>
-                    {""}
+                <Text style={{color:"black"}}>
+                    {value}
                 </Text>
             </View>
 
-            <View>
+            <View style={{marginLeft: 10}}>
             <Card name={"ASSIGNMENT"} onClick={nav} /> 
         </View>
 

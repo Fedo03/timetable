@@ -76,7 +76,8 @@ const stl = StyleSheet.create({
         width : Dimensions.get("screen").width - 20,
         height : 50,
         backgroundColor : "rgb(73, 216, 230)",
-        marginTop : 10
+        marginTop : 10,
+        borderRadius : 10
     },
     txt : {
         color : "black",
