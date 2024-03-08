@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from './screens/home'
 import CanvasHome from "./screens/canvas";
 import Course from "./screens/courses";
+import Assign from "./screens/assign";
 
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,9 @@ const App = () => {
             <Stack.Screen
             name="course"
             component={Course} />
+            <Stack.Screen 
+            name="assign"
+            component={Assign} />
       </Stack.Navigator>
     </NavigationContainer>
 
