@@ -24,17 +24,12 @@ const Card = (props) => {
 
             <TouchableOpacity onPress={props.onClick}>
         <View style={stl.con}>
-        {
-            card && (
-                <View>
+       
                 <Text style={stl.txt}>
                 {props.name}
                 </Text>
 
-                </View>
-
-            )
-        }
+               
         </View> 
         </TouchableOpacity>
 
@@ -42,15 +37,12 @@ const Card = (props) => {
     } else {
         return (<TouchableOpacity onPress={props.onClick}>
             <View style={stl.hor}>
-            {
-                !card && (
-                    <View>
+            
                     <Text style={stl.txt}>
                     {props.name}
                     </Text>
-                    </View>
-                )
-            }
+                    
+                
             </View>
             </TouchableOpacity>)
     }
