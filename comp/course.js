@@ -15,15 +15,14 @@ const Card = (props) => {
       
     const [card, setCard] = useState(false)
 
+
+    function cards() {
+
+    
     if(props.cards == "card") {
-        setCard(true)
-    }
-        
+        return (
 
-
-    return (
-        <SafeAreaView>
-    {/*<TouchableOpacity onPress={props.onClick}>
+            <TouchableOpacity onPress={props.onClick}>
         <View style={stl.con}>
         {
             card && (
@@ -38,22 +37,32 @@ const Card = (props) => {
         }
         </View> 
         </TouchableOpacity>
-    */}
 
+        )
+    } else {
+        return (<TouchableOpacity onPress={props.onClick}>
+            <View style={stl.hor}>
+            {
+                !card && (
+                    <View>
+                    <Text style={stl.txt}>
+                    {props.name}
+                    </Text>
+                    </View>
+                )
+            }
+            </View>
+            </TouchableOpacity>)
+    }
+        
+    }
 
-    <TouchableOpacity onPress={props.onClick}>
-        <View style={stl.hor}>
-        {
-            !card && (
-                <View>
-                <Text style={stl.txt}>
-                {props.name}
-                </Text>
-                </View>
-            )
-        }
-        </View>
-        </TouchableOpacity>
+    return (
+        <SafeAreaView>
+            <View>{
+                cards
+            }</View>
+    
         </SafeAreaView>
 
     )
@@ -70,7 +79,7 @@ const stl = StyleSheet.create({
     },
     txt : {
         color : "black",
-        backgroundColor : "rgb(0,250,50)"
+        backgroundColor : "rgb(73, 216, 230)"
     
     }
 })
