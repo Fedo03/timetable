@@ -11,7 +11,7 @@ const Assign = ({navigation, route}) => {
     const [token,setToken] = useState("19417~d1zieLtOtyOEYKaQpdkROpHd3R2Qi5avV9KpL5OCOtL6aN1NyygQAOW9FeundIdy")
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
     const {key,name} = route.params
-    const [assig, setAssig] = useState([])
+    const [assig, setassig] = useState([{}])
     useEffect(()=> {
      fetch(urls + "/users/self/courses/"+key+"/assignments", {
         method : "GET",
@@ -29,7 +29,7 @@ const Assign = ({navigation, route}) => {
                 muted : info.muted
                
             }
-                setAssig(old => [...old, newV])
+                setassig(pre => [...pre, newV])
         });
      })
     },[])
