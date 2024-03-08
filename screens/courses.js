@@ -29,7 +29,7 @@ const Course = ({navigation, route}) => {
             </View>
 
             <View style={stl.txt}>
-            <Card name={"ASSIGNMENT"} onClick={nav} /> 
+            <Card name={"ASSIGNMENT"} onClick={nav} bcolor={"rgb(73, 216, 230)"} /> 
         </View>
 
         </SafeAreaView>

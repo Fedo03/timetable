@@ -11,6 +11,8 @@ import {
 } from 'react-native'
 import { Screen } from 'react-native-screens'
 
+
+
 const Card = (props) => {
       
     
@@ -38,11 +40,11 @@ const Card = (props) => {
     } else {
         return (<TouchableOpacity onPress={props.onClick}>
             <View style={stl.hor}>
-            
+               <View style={{backgroundColor : props.bcolor , height : "100%",borderRadius : 10}}>
                     <Text style={stl.txt}>
                     {props.name}
                     </Text>
-                    
+                    </View> 
                 
             </View>
             </TouchableOpacity>)
@@ -76,7 +78,7 @@ const stl = StyleSheet.create({
     hor : {
         width : Dimensions.get("screen").width - 20,
         height : 50,
-        backgroundColor : "rgb(73, 216, 230)",
+        
         marginTop : 10,
         borderRadius : 10
     },
