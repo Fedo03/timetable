@@ -10,13 +10,13 @@ import {
 import Card from '../comp/course';
 
 const Course = ({navigation, route}) => {
-    
+    const [ops , setOps] = useState(["ASSIGNMENTS","FILES", "GRADES","MODULES", "PEOPLE","PAGES", "QUIZ"])
    const {name,key} = route.params
    console.log(name)
 
 
-     function nav() {
-        navigation.navigate('assign', {key : key, name : name} )
+     function nav(item) {
+        navigation.navigate(item, {key : key, name : name} )
      }
 
 
@@ -29,7 +29,10 @@ const Course = ({navigation, route}) => {
             </View>
 
             <View style={stl.txt}>
-            <Card name={"ASSIGNMENT"} onClick={nav} bcolor={"rgb(73, 216, 230)"} /> 
+                {
+                    ops.map((item) =>{
+            <Card name={item} onClick={() => nav(item)} bcolor={"rgb(73, 216, 230)"} /> 
+        })}
         </View>
 
         </SafeAreaView>

@@ -28,7 +28,7 @@ const App = () => {
             name="course"
             component={Course} />
            <Stack.Screen 
-            name="assign"
+            name="ASSIGNMENTS"
             component={Assign} />
       </Stack.Navigator>
     </NavigationContainer>

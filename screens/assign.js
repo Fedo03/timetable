@@ -8,7 +8,7 @@ import {
 import Card from "../comp/course";
 
 const Assign = ({navigation, route}) => {
-    const [token,setToken] = useState("19417~d1zieLtOtyOEYKaQpdkROpHd3R2Qi5avV9KpL5OCOtL6aN1NyygQAOW9FeundIdy")
+    const [token,setToken] = useState("19417~aoX2ys5D1E5XonG7ytxmCFYYkyMD1v8OnFZ7pmecQRmYuLSAmxOwiqHTeVGzpZv7")
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
     const {key,name} = route.params
     const [assig, setassig] = useState([{}])
