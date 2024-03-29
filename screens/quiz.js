@@ -40,7 +40,7 @@ const Quiz = ({navigation, route}) => {
         <SafeAreaView>
 
  <ScrollView>
-    <View>{
+    <View  style={{paddingLeft : 10, paddingTop : 10}}>{
         info.map((item)=> {
             return <Card name={item.name} bcolor={"rgb(73, 216, 230)"} />
         })

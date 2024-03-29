@@ -42,7 +42,7 @@ const Assignm = ({navigation, route})=>{
                 </Text>
             </View>
             <ScrollView>
-            <View>
+            <View style={stl.txt}>
                 <Text>{due}</Text>
                { <HTML source={{html : desc}} style={{height : height, width : height}}/>
                }
@@ -62,7 +62,8 @@ const Assignm = ({navigation, route})=>{
 
 const stl = StyleSheet.create({
     txt : {
-        marginLeft: 5,
+        marginTop: 10,
+        marginLeft : 3
     
     },
     head : {

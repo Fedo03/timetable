@@ -13,7 +13,7 @@ const Assign = ({navigation, route}) => {
     const urls = 'https://ulwazi.wits.ac.za/api/v1'
     const {key,name} = route.params
     const [assig, setassig] = useState([{}])
-
+ 
     useEffect(()=> {
      fetch(urls + "/users/self/courses/"+key+"/assignments", {
         method : "GET",
@@ -26,19 +26,36 @@ const Assign = ({navigation, route}) => {
         setassig([])
         data.forEach(info => {
            
-            console.log(info)
-            
+        if(info.muted){
+           
             var newV = { 
                 id : info.id,
                 name : info.name,
                 muted : info.muted,
-                a_id : key
+                a_id : key,
+                color : "rgb(151,151,151)"
             }
+        } else {
+           
+            
+             var newV = { 
+                id : info.id,
+                name : info.name,
+                muted : info.muted,
+                a_id : key,
+                color : "rgb(73, 216, 230)"
+            }
+        }
+            
                 setassig(pre => [...pre, newV])
                 console.log(newV)
         });
      })
     },[])
+
+
+     
+
 
     function nav(item){
         navigation.navigate("ASSIGMENT", {name: item})
@@ -49,10 +66,11 @@ const Assign = ({navigation, route}) => {
                 <Text style={{color: "black"}}>ASSIGNMENT</Text>
             </View>
             <ScrollView>
-            <View>
-                {
+            <View  style={{paddingLeft : 10, paddingTop : 10}}>
+                {   
                     assig.map((item)=> {
-                     return   <Card name={item.name} bcolor={"rgb(73, 216, 230)"} onClick={() => nav(item)}/>
+                       
+                     return   <Card name={item.name} bcolor={item.color} onClick={() => nav(item)}/>
                     })
                 }
                 
