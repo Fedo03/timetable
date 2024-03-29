@@ -20,7 +20,7 @@ const Quiz = ({navigation, route}) => {
           return res.json()
         }).then((data)=>{
  
-          
+          setInfo([])
        data.forEach(inf => {
         
          var sdata  ={

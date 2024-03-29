@@ -23,10 +23,11 @@ const Assign = ({navigation, route}) => {
      }).then((res)=> {
         return res.json()
      }).then((data)=> {
-        
+        setassig([])
         data.forEach(info => {
-           // setassig([])
+           
             console.log(info)
+            
             var newV = { 
                 id : info.id,
                 name : info.name,
