@@ -25,6 +25,7 @@ const Assign = ({navigation, route}) => {
      }).then((data)=> {
         
         data.forEach(info => {
+           // setassig([])
             console.log(info)
             var newV = { 
                 id : info.id,

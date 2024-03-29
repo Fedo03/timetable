@@ -1,13 +1,18 @@
 import React , {useEffect, useState}from "react";
-import { SafeAreaView, View,Text , StyleSheet} from "react-native";
+import { SafeAreaView, View,Text , StyleSheet, ScrollView, useWindowDimensions} from "react-native";
 import HTML from "react-native-render-html"
 
+//const {height, width, scale, fontScale} = useWindowDimensions();
+
 const Assignm = ({navigation, route})=>{
+    const {height, width, scale, fontScale} = useWindowDimensions();
+
     const {name} = route.params
     console.log(name)
     var token = "19417~WLW5V3lMLN6nGna98Qbl9UabKpt0beAT1HT3T9w4AjxP8AOi3uedhH0ZBDp1rVRY"
     const [date, setDate] = useState()
     const [desc, setDesc] = useState()
+    const [due, setDue] = useState()
          
 
     useEffect(()=> {
@@ -23,11 +28,10 @@ const Assignm = ({navigation, route})=>{
     setDate(data)
     console.log(data.description)
     setDesc(data.description)
+    setDue(data.due_at)
   })
     }, [])
-    //console.log(date)
-
-    //console.log(date.html_url)
+    
 
   
     return (
@@ -37,10 +41,19 @@ const Assignm = ({navigation, route})=>{
                     {name.name}
                 </Text>
             </View>
+            <ScrollView>
             <View>
-               { <HTML source={{html : desc}}/>
+                <Text>{due}</Text>
+               { <HTML source={{html : desc}} style={{height : height, width : height}}/>
                }
                     </View>
+                    </ScrollView>
+
+            <View>
+                <Text title={"buttom"}>
+                    
+                </Text>
+            </View>
  
         </SafeAreaView>
     )
@@ -56,6 +69,11 @@ const stl = StyleSheet.create({
         marginLeft: 10,
         fontSize : 25,
         color:"black"
+    },
+    html : {
+       // width : useWindowDimensions().width,
+     //   height : useWindowDimensions().height
+
     }
 })
 
