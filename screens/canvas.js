@@ -17,7 +17,7 @@ import Icons from '../comp/icons'
 const CanvasHome = ({navigation}) => {
     
     var url = "https://canvas.instructure.com/api/v1/courses?access_token="
-    const [token,setToken] = useState("19417~aoX2ys5D1E5XonG7ytxmCFYYkyMD1v8OnFZ7pmecQRmYuLSAmxOwiqHTeVGzpZv7")
+    const [token,setToken] = useState("19417~WLW5V3lMLN6nGna98Qbl9UabKpt0beAT1HT3T9w4AjxP8AOi3uedhH0ZBDp1rVRY")
     var calen ;
    
     const urls = 'https://ulwazi.wits.ac.za/api/v1'

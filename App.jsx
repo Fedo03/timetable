@@ -9,6 +9,8 @@ import Home from './screens/home'
 import CanvasHome from "./screens/canvas";
 import Course from "./screens/courses";
 import Assign from "./screens/assign";
+import Quiz from "./screens/quiz";
+import Assignm from "./screens/assignm";
 
 
 const Stack = createNativeStackNavigator();
@@ -30,6 +32,27 @@ const App = () => {
            <Stack.Screen 
             name="ASSIGNMENTS"
             component={Assign} />
+            <Stack.Screen 
+            name="FILES"
+            component={Assign} />
+            <Stack.Screen 
+            name="GRADES"
+            component={Assign} />
+            <Stack.Screen 
+            name="MODULES"
+            component={Assign} />
+            <Stack.Screen 
+            name="PEOPLE"
+            component={Assign} />
+            <Stack.Screen 
+            name="PAGES"
+            component={Assign} />
+            <Stack.Screen 
+            name="QUIZ"
+            component={Quiz} />
+            <Stack.Screen 
+            name="ASSIGMENT"
+            component={Assignm} />
       </Stack.Navigator>
     </NavigationContainer>
 

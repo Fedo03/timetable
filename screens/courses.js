@@ -1,10 +1,11 @@
 import { useRoute } from '@react-navigation/native';
-import React from "react";
+import React, {useState} from "react";
 import {
     View,
     SafeAreaView,
     Text,
-    StyleSheet
+    StyleSheet,
+    ScrollView
 } from 'react-native'
 
 import Card from '../comp/course';
@@ -27,13 +28,15 @@ const Course = ({navigation, route}) => {
                     {name}
                 </Text>
             </View>
-
+            <ScrollView>
             <View style={stl.txt}>
                 {
                     ops.map((item) =>{
-            <Card name={item} onClick={() => nav(item)} bcolor={"rgb(73, 216, 230)"} /> 
+           return <Card name={item} onClick={() => nav(item)} bcolor={"rgb(73, 216, 230)"} /> 
         })}
         </View>
+        </ScrollView>
+
 
         </SafeAreaView>
     )
