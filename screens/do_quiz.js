@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView,
     ScrollView,
+    StyleSheet,
     Text,
   View,
   useWindowDimensions
@@ -67,10 +68,18 @@ import Button from "../comp/button";
             <HTML source={{html : dis} } style={{height : height, width : height}}/>
             </View>
 
-            <View><Button txt="Take quiz"/>
+            <View><Button txt="Take quiz" tst={stl.butt}/>
                 </View>
         </SafeAreaView>
     )
  }
+
+
+ const stl =  StyleSheet.create({
+    butt : {
+      color : "white",
+      backgroundColor : "blue"
+    }
+ })
 
  export default DoQuiz

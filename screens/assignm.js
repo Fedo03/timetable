@@ -1,6 +1,7 @@
 import React , {useEffect, useState}from "react";
 import { SafeAreaView, View,Text , StyleSheet, ScrollView, useWindowDimensions} from "react-native";
 import HTML from "react-native-render-html"
+import Button from "../comp/button";
 
 //const {height, width, scale, fontScale} = useWindowDimensions();
 
@@ -50,9 +51,7 @@ const Assignm = ({navigation, route})=>{
                     </ScrollView>
 
             <View>
-                <Text title={"buttom"}>
-                    
-                </Text>
+                <Button txt="submit assignment" tst={stl.butt}/>
             </View>
  
         </SafeAreaView>
@@ -75,7 +74,11 @@ const stl = StyleSheet.create({
        // width : useWindowDimensions().width,
      //   height : useWindowDimensions().height
 
-    }
+    },
+    butt : {
+        color : "white",
+        backgroundColor : "blue"
+      }
 })
 
 export default Assignm
