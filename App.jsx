@@ -11,6 +11,7 @@ import Course from "./screens/courses";
 import Assign from "./screens/assign";
 import Quiz from "./screens/quiz";
 import Assignm from "./screens/assignm";
+import DoQuiz from "./screens/do_quiz";
 
 
 const Stack = createNativeStackNavigator();
@@ -53,6 +54,10 @@ const App = () => {
             <Stack.Screen 
             name="ASSIGMENT"
             component={Assignm} />
+            <Stack.Screen 
+            name="Task"
+            component={DoQuiz} />
+            
       </Stack.Navigator>
     </NavigationContainer>
 

@@ -6,7 +6,7 @@ ScrollView} from "react-native";
 import Card from "../comp/course";
 
 const Quiz = ({navigation, route}) => {
-    var token = "19417~WLW5V3lMLN6nGna98Qbl9UabKpt0beAT1HT3T9w4AjxP8AOi3uedhH0ZBDp1rVRY"
+    var token = "19417~RFZirwoF2CjuqbYGJ1BNYvSiVX3RBbt7x5XK9xzxa78ieOv2RNLsvpPpmmcs5q52"
     const {key,name} = route.params
     const [info,setInfo] = useState([{}])
 
@@ -36,13 +36,18 @@ const Quiz = ({navigation, route}) => {
 
        console.log(info)
           }, [])
+
+
+          function nav(item) {
+            navigation.navigate("Task", {info : item})
+          }
     return ( 
         <SafeAreaView>
 
  <ScrollView>
     <View  style={{paddingLeft : 10, paddingTop : 10}}>{
         info.map((item)=> {
-            return <Card name={item.name} bcolor={"rgb(73, 216, 230)"} />
+            return <Card name={item.name} bcolor={"rgb(73, 216, 230)"} onClick={() => nav(item)} />
         })
     }
     </View>
